@@ -1,0 +1,375 @@
+//
+
+//  ViewController.h
+
+//  UIGestureRecognizer
+
+//
+
+//  Created by Sábado on 25/10/14.
+
+//  Copyright (c) 2014 RUI TOLEDO. All rights reserved.
+
+//
+
+ 
+
+#import <UIKit/UIKit.h>
+
+ 
+
+@interface ViewController : UIViewController
+
+ 
+
+ 
+
+// Outlet para nossa viewzinha em tela
+
+@property (weak, nonatomic) IBOutletUIView *viewzinha;
+
+ 
+
+ 
+
+// Método que será disparado pelo gesto Tap
+
+-(void)disparouTap:(UITapGestureRecognizer *)gestoTap;
+
+ 
+
+// Método que será disparado pelo gesto Swipe
+
+-(void)disparouSwipe:(UISwipeGestureRecognizer *)gestoSwipe;
+
+ 
+
+// Método que será disparado pelo gesto PAN
+
+-(void)disparouPAN:(UIPanGestureRecognizer *)gestoPAN;
+
+ 
+
+// Método que será disparado pelo gesto LongPress
+
+-(void)disparouLongPress:(UILongPressGestureRecognizer *)gestoLongPress;
+
+ 
+
+// Método que será disparado pelo gesto Rotation
+
+-(void)disparouRotation:(UIRotationGestureRecognizer *)gestoRotation;
+
+ 
+
+// Método que será disparado pelo gesto Pinch
+
+-(void)disparouPinch:(UIPinchGestureRecognizer *)gestoPinch;
+
+ 
+
+@end
+
+ 
+
+//
+
+//  ViewController.m
+
+//  UIGestureRecognizer
+
+//
+
+//  Created by Sábado on 25/10/14.
+
+//  Copyright (c) 2014 RUI TOLEDO. All rights reserved.
+
+//
+
+ 
+
+#import "ViewController.h"
+
+ 
+
+@interfaceViewController ()
+
+ 
+
+@end
+
+ 
+
+@implementation ViewController
+
+ 
+
+- (void)viewDidLoad
+
+{
+
+    [superviewDidLoad];
+
+// Do any additional setup after loading the view, typically from a nib.
+
+    
+
+    // Habilitando multiplos toques
+
+    // self.viewzinha.multipleTouchEnabled=YES;
+
+    // NSLog(@"%i", self.viewzinha.multipleTouchEnabled);
+
+    
+
+    
+
+    // Criando um gesture recognizer do tipo Tap (tocar na tela)
+
+    UITapGestureRecognizer *gestoTap = [[UITapGestureRecognizeralloc]initWithTarget:selfaction:@selector(disparouTap:)];
+
+    
+
+    // Podemos tambem definir a quantidade de toques necessário para disparar nosso gesture
+
+    gestoTap.numberOfTapsRequired=2;
+
+    
+
+    //Adicionando o tap a nossa viewzinha
+
+    [self.viewzinhaaddGestureRecognizer:gestoTap];
+
+    
+
+    //----------------------------------------------------------------
+
+ 
+
+    // Criando um gesture recognizer do tipo SWIPE (deslizar o dedo com certa rapidez para algum lado)
+
+    
+
+    
+
+    UISwipeGestureRecognizer *gestoSwipe = [[UISwipeGestureRecognizeralloc]initWithTarget:selfaction:@selector(disparouSwipe:)];
+
+    
+
+    // Podemos tambem controlar a quantidade de toques necessarios à direção do swipe
+
+    gestoSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+
+  
+
+    [self.viewzinha addGestureRecognizer:gestoSwipe];
+
+ 
+
+    
+
+    //----------------------------------------------------------------
+
+ 
+
+    // Criando um gesture recognizer do tipo PAN (arrastar o dedo sobre o objeto)
+
+    
+
+    
+
+    UIPanGestureRecognizer *gestoPAN = [[UIPanGestureRecognizeralloc]initWithTarget:selfaction:@selector(disparouPAN:)];
+
+    
+
+    [self.viewzinhaaddGestureRecognizer:gestoPAN];
+
+ 
+
+    
+
+    //----------------------------------------------------------------
+
+ 
+
+    // Criando um gesture recognizer do tipo LongPress
+
+    
+
+    
+
+    UILongPressGestureRecognizer *gestoLongPress = [[UILongPressGestureRecognizeralloc]initWithTarget:selfaction:@selector(disparouLongPress:)];
+
+ 
+
+    [self.viewzinha addGestureRecognizer:gestoLongPress];
+
+    
+
+ 
+
+    //----------------------------------------------------------------
+
+ 
+
+    // Criando um gesture recognizer do tipo ROTATION
+
+    
+
+    
+
+    UIRotationGestureRecognizer *gestoRotation = [[UIRotationGestureRecognizeralloc]initWithTarget:selfaction:@selector(disparouRotation:)];
+
+ 
+
+    [self.viewzinha addGestureRecognizer:gestoRotation];
+
+    
+
+    
+
+    
+
+    //----------------------------------------------------------------
+
+ 
+
+    // Criando um gesture recognizer do tipo PINCH
+
+    
+
+    
+
+    UIPinchGestureRecognizer *gestoPinch = [[UIPinchGestureRecognizeralloc]initWithTarget:selfaction:@selector(disparouPinch:)];
+
+ 
+
+    [self.viewzinha addGestureRecognizer:gestoPinch];
+
+    
+
+    
+
+    
+
+}
+
+ 
+
+- (void)didReceiveMemoryWarning
+
+{
+
+    [superdidReceiveMemoryWarning];
+
+    // Dispose of any resources that can be recreated.
+
+}
+
+ 
+
+# pragma mark - Minhas Ações
+
+-(void)disparouTap:(UITapGestureRecognizer *)gestoTap
+
+{
+
+    NSLog(@"O usuario Tapou!!");
+
+    
+
+}
+
+ 
+
+ 
+
+-(void)disparouSwipe:(UISwipeGestureRecognizer *)gestoSwipe
+
+{
+
+    NSLog(@"O usuario Swipe!!");
+
+    
+
+}
+
+ 
+
+ 
+
+-(void)disparouPAN:(UIPanGestureRecognizer *)gestoPAN
+
+{
+
+    // Resgatando a posiçao do toque
+
+    CGPoint posicaoToque = [gestoPAN locationInView:self.view];
+
+    // Mostrando a posicao
+
+    NSLog(@"O usuario PANou em %@!!", NSStringFromCGPoint(posicaoToque));
+
+    
+
+}
+
+ 
+
+ 
+
+-(void)disparouLongPress:(UILongPressGestureRecognizer *)gestoLongPress
+
+{
+
+    // Um gesture pode ser chamado varias vezes quando passa por estados diferentes. Podemos verificar o estado do gesture para evitar este disparo multiplo.
+
+    if (gestoLongPress.state==UIGestureRecognizerStateBegan)
+
+    {
+
+    NSLog(@"O usuario LongPresses!!");
+
+    }
+
+}
+
+ 
+
+ 
+
+-(void)disparouRotation:(UIRotationGestureRecognizer *)gestoRotation
+
+{
+
+    NSLog(@"O usuario Rotacionou!!");
+
+    // Formula para rotacionar objetos
+
+    gestoRotation.view.transform=CGAffineTransformRotate(gestoRotation.view.transform, gestoRotation.rotation);
+
+    gestoRotation.rotation=0;
+
+}
+
+ 
+
+-(void)disparouPinch:(UIPinchGestureRecognizer *)gestoPinch
+
+{
+
+    NSLog(@"O usuario Pinched!!");
+
+    gestoPinch.view.transform=CGAffineTransformScale(gestoPinch.view.transform, gestoPinch.scale, gestoPinch.scale);
+
+    
+
+    gestoPinch.scale=1;
+
+}
+
+ 
+
+ 
+
+@end
